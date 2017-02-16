@@ -1,7 +1,7 @@
 # REMDI
 Resellerclub Extended Management Domain Interface for WHMCS
 
-## WHMCS Six anf Five Client Area Template files
+## WHMCS Six and Five Client Area Template files
 * domainmanagementchildns.tpl
 * domainmanagementcontactchange.tpl
 * domainmanagementcontactmod.tpl
