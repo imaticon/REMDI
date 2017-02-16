@@ -1,14 +1,14 @@
 # REMDI
 Resellerclub Extended Management Domain Interface for WHMCS
 
-## WHMCS Six Client Area Template files
+## WHMCS Six anf Five Client Area Template files
 * domainmanagementchildns.tpl
 * domainmanagementcontactchange.tpl
 * domainmanagementcontactmod.tpl
 * domainmanagementcontacts.tpl
 
 ## Compatibility
-This theme is compatible with WHMCS 6.x - 7.x and later for Six and Custom Six based template themes
+This theme is compatible with WHMCS 6.x - 7.x
 
 ## Viewing the Template Changes
 A distinct tag is created for each published version of REMDI. You can easily view any span of changes you like using the Github Comparison View. Simply, select a pair of version tags in that interface!
