@@ -1,9 +1,9 @@
 {include file="$template/pageheader.tpl" title=$LANG.rcdom_clientareachangedomaincontact desc=$domain}
 
 {if $is_v6 eq "true"}
-<script type="text/javascript" src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
+	<script type="text/javascript" src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
 {else}
-<script type="text/javascript" src="includes/jscript/statesdropdown.js"></script>
+	<script type="text/javascript" src="includes/jscript/statesdropdown.js"></script>
 {/if}
 
 <script language="javascript" type="text/javascript">
@@ -39,7 +39,7 @@
         <div class="col70">
             <div class="internalpadding">
 			{if $canmod neq "false"}
-				<form method="post" action="{$smarty.server.PHP_SELF}?action=moddomaincontacts#tab1">
+				<form method="post" action="domainmanagement.php?action=moddomaincontacts#tab1">
 					<table class="table table-striped table-framed">
 						<thead>
 							<tr>
@@ -54,11 +54,11 @@
 								<td>&nbsp;
 									<select name="contactId" id="contactId">
 									{foreach from=$contacts key=value item=id}
-									<option value="{$id.contactid}">
-									{foreach from=$id key=key item=item}
-									{$item}
-									{/foreach}
-									</option>
+										<option value="{$id.contactid}">
+										{foreach from=$id key=key item=item}
+											{$item}
+										{/foreach}
+										</option>
 									{/foreach}
 									</select>
 								</td>
@@ -66,12 +66,9 @@
 							<tr>
 								<td colspan="2" align="center">
 									<input type="hidden" name="productkey" value="{$contactproductkey}"/>
+									<input type="hidden" name="irtprule" value="{$irtprule}"/>									
 									<input type="hidden" name="domainid" value="{$domainid}"/>
 									<input type="hidden" name="domain" value="{$domain}"/>
-									<input type="hidden" name="regcontactid" value="{if $smarty.post.regcontactid}{$smarty.post.regcontactid}{else}{$smarty.post.registrantContactId}{/if}"/>
-									<input type="hidden" name="admincontactid" value="{if $smarty.post.admincontactid}{$smarty.post.admincontactid}{else}{$smarty.post.adminContactId}{/if}"/>
-									<input type="hidden" name="techcontactid" value="{if $smarty.post.techcontactid}{$smarty.post.techcontactid}{else}{$smarty.post.techContactId}{/if}"/>
-									<input type="hidden" name="billcontactid" value="{if $smarty.post.billcontactid}{$smarty.post.billcontactid}{else}{$smarty.post.billingContactId}{/if}"/>
 									<p align="center"><input class="btn btn-info" type="submit" value="{$LANG.rcdom_contactinfomodbutton}"/></p>
 								</td>
 							</tr>
@@ -129,7 +126,7 @@
 				</div>
 				{/if}
 
-				<form method="post" action="{$smarty.server.PHP_SELF}?action=changedomaincontacts#tab2">
+				<form method="post" action="domainmanagement.php?action=changedomaincontacts#tab2">
 					<table class="table table-striped table-framed">
 						<thead>
 							<tr>
@@ -144,15 +141,15 @@
 								<td>&nbsp;
 									<select name="registrantContactId" id="registrantContactId">
 										{foreach from=$contacts key=value item=id}
-										{if $smarty.post.regcontactid eq $id.contactid || $smarty.post.registrantContactId eq $id.contactid}
-										<option value="{if $smarty.post.regcontactid}{$smarty.post.regcontactid}{else}{$smarty.post.registrantContactId}{/if}" selected="selected">
-										{else}
-										<option value="{$id.contactid}">
-										{/if}
-										{foreach from=$id key=key item=item}
-										{$item}
-										{/foreach}
-										</option>
+											{if $smarty.post.regcontactid eq $id.contactid || $smarty.post.registrantContactId eq $id.contactid}
+												<option value="{if $smarty.post.regcontactid}{$smarty.post.regcontactid}{else}{$smarty.post.registrantContactId}{/if}" selected="selected">
+											{else}
+												<option value="{$id.contactid}">
+											{/if}
+											{foreach from=$id key=key item=item}
+												{$item}
+											{/foreach}
+											</option>
 										{/foreach}
 									</select>
 								</td>
@@ -162,15 +159,15 @@
 								<td>&nbsp;
 									<select name="adminContactId" id="adminContactId">
 										{foreach from=$contacts key=value item=id}
-										{if $smarty.post.admincontactid eq $id.contactid || $smarty.post.adminContactId eq $id.contactid}
-										<option value="{if $smarty.post.admincontactid}{$smarty.post.admincontactid}{else}{$smarty.post.adminContactId}{/if}" selected="selected">
-										{else}
-										<option value="{$id.contactid}">
-										{/if}
-										{foreach from=$id key=key item=item}
-										{$item}
-										{/foreach}
-										</option>
+											{if $smarty.post.admincontactid eq $id.contactid || $smarty.post.adminContactId eq $id.contactid}
+												<option value="{if $smarty.post.admincontactid}{$smarty.post.admincontactid}{else}{$smarty.post.adminContactId}{/if}" selected="selected">
+											{else}
+												<option value="{$id.contactid}">
+											{/if}
+											{foreach from=$id key=key item=item}
+												{$item}
+											{/foreach}
+											</option>
 										{/foreach}
 									</select>
 								</td>
@@ -180,15 +177,15 @@
 								<td>&nbsp;
 									<select name="techContactId" id="techContactId">
 										{foreach from=$contacts key=value item=id}
-										{if $smarty.post.techcontactid eq $id.contactid || $smarty.post.techContactId eq $id.contactid}
-										<option value="{if $smarty.post.techcontactid}{$smarty.post.techcontactid}{else}{$smarty.post.techContactId}{/if}" selected="selected">
-										{else}
-										<option value="{$id.contactid}">
-										{/if}
-										{foreach from=$id key=key item=item}
-										{$item}
-										{/foreach}
-										</option>
+											{if $smarty.post.techcontactid eq $id.contactid || $smarty.post.techContactId eq $id.contactid}
+												<option value="{if $smarty.post.techcontactid}{$smarty.post.techcontactid}{else}{$smarty.post.techContactId}{/if}" selected="selected">
+											{else}
+												<option value="{$id.contactid}">
+											{/if}
+											{foreach from=$id key=key item=item}
+												{$item}
+											{/foreach}
+											</option>
 										{/foreach}
 									</select>
 								</td>
@@ -198,15 +195,15 @@
 								<td>&nbsp;
 									<select name="billingContactId" id="billingContactId">
 										{foreach from=$contacts key=value item=id}
-										{if $smarty.post.billcontactid eq $id.contactid || $smarty.post.billingContactId eq $id.contactid}
-										<option value="{if $smarty.post.billcontactid}{$smarty.post.billcontactid}{else}{$smarty.post.billingContactId}{/if}" selected="selected">
-										{else}
-										<option value="{$id.contactid}">
-										{/if}
-										{foreach from=$id key=key item=item}
-										{$item}
-										{/foreach}
-										</option>
+											{if $smarty.post.billcontactid eq $id.contactid || $smarty.post.billingContactId eq $id.contactid}
+												<option value="{if $smarty.post.billcontactid}{$smarty.post.billcontactid}{else}{$smarty.post.billingContactId}{/if}" selected="selected">
+											{else}
+												<option value="{$id.contactid}">
+											{/if}
+											{foreach from=$id key=key item=item}
+												{$item}
+											{/foreach}
+											</option>
 										{/foreach}
 									</select>
 								</td>
@@ -217,6 +214,7 @@
 									<input type="hidden" name="domain" value="{$domain}"/>
 									<input type="hidden" name="domainid" value="{$domainid}"/>
 									<input type="hidden" name="productkey" value="{$contactproductkey}"/>
+									<input type="hidden" name="irtprule" value="{$irtprule}"/>
 									<p align="center"><input class="btn btn-success" type="submit" value="{$LANG.clientareasavechanges}"/></p>
 								</td>
 							</tr>
@@ -275,7 +273,7 @@
 				</div>
 				{/if}
 
-				<form method="post" action="{$smarty.server.PHP_SELF}?action=changedomaincontacts#tab3">
+				<form method="post" action="domainmanagement.php?action=changedomaincontacts#tab3">
 					<table class="table table-striped table-framed">
 						<thead>
 							<tr>
@@ -290,11 +288,11 @@
 								<td>&nbsp;
 									<select name="contactId" id="contactId">
 									{foreach from=$contacts key=value item=id}
-									<option value="{$id.contactid}">
-									{foreach from=$id key=key item=item}
-									{$item}
-									{/foreach}
-									</option>
+										<option value="{$id.contactid}">
+										{foreach from=$id key=key item=item}
+											{$item}
+										{/foreach}
+										</option>
 									{/foreach}
 									</select>
 								</td>
@@ -303,12 +301,9 @@
 								<td colspan="2" align="center">
 									<input type="hidden" name="request" value="dodelete"/>
 									<input type="hidden" name="productkey" value="{$contactproductkey}"/>
+									<input type="hidden" name="irtprule" value="{$irtprule}"/>
 									<input type="hidden" name="domainid" value="{$domainid}"/>
 									<input type="hidden" name="domain" value="{$domain}"/>
-									<input type="hidden" name="regcontactid" value="{if $smarty.post.regcontactid}{$smarty.post.regcontactid}{else}{$smarty.post.registrantContactId}{/if}"/>
-									<input type="hidden" name="admincontactid" value="{if $smarty.post.admincontactid}{$smarty.post.admincontactid}{else}{$smarty.post.adminContactId}{/if}"/>
-									<input type="hidden" name="techcontactid" value="{if $smarty.post.techcontactid}{$smarty.post.techcontactid}{else}{$smarty.post.techContactId}{/if}"/>
-									<input type="hidden" name="billcontactid" value="{if $smarty.post.billcontactid}{$smarty.post.billcontactid}{else}{$smarty.post.billingContactId}{/if}"/>
 									<p align="center"><input class="btn btn-danger" type="submit" value="{$LANG.rcdom_contactinfodelbutton}" onclick="return confirmDelete();"/>	</p>
 								</td>
 							</tr>
@@ -367,7 +362,7 @@
 				</div>
 				{/if}			
 
-				<form method="post" action="{$smarty.server.PHP_SELF}?action=changedomaincontacts#tab4">
+				<form method="post" action="domainmanagement.php?action=changedomaincontacts#tab4">
 					<table class="table table-striped table-framed">
 						<thead>
 							<tr>
@@ -531,14 +526,11 @@
 							<tr>
 								<td colspan="2">
 									<input type="hidden" name="productkey" value="{$contactproductkey}"/>
+									<input type="hidden" name="irtprule" value="{$irtprule}"/>
 									<input type="hidden" name="request" value="docreate"/>
 									<input type="hidden" name="contacttype" value="{$contacttype}"/>
 									<input type="hidden" name="domainid" value="{$domainid}"/>
 									<input type="hidden" name="domain" value="{$domain}"/>
-									<input type="hidden" name="regcontactid" value="{if $smarty.post.regcontactid}{$smarty.post.regcontactid}{else}{$smarty.post.registrantContactId}{/if}"/>
-									<input type="hidden" name="admincontactid" value="{if $smarty.post.admincontactid}{$smarty.post.admincontactid}{else}{$smarty.post.adminContactId}{/if}"/>
-									<input type="hidden" name="techcontactid" value="{if $smarty.post.techcontactid}{$smarty.post.techcontactid}{else}{$smarty.post.techContactId}{/if}"/>
-									<input type="hidden" name="billcontactid" value="{if $smarty.post.billcontactid}{$smarty.post.billcontactid}{else}{$smarty.post.billingContactId}{/if}"/>
 									<p align="center"><input class="btn btn-success" type="submit" value="{$LANG.rcdom_contactinfocreatebutton}" ></p>
 								</td>
 							</tr>
