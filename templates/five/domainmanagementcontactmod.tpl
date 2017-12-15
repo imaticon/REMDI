@@ -166,7 +166,8 @@
 					<input type="hidden" name="domainid" value="{$domainid}">
 					<input type="hidden" name="domain" value="{$domain}"/>
 					<input type="hidden" name="productkey" value="{$contactproductkey}">
-					<input type="hidden" name="irtprule" value="{$irtprule}">					
+					<input type="hidden" name="irtprule" value="{$irtprule}">
+					
 					<p align="center"><input class="btn btn-success" type="submit" value="{$LANG.clientareasavechanges}"></p>
 				</td>
 			</tr>
@@ -181,5 +182,6 @@
 	<input type="hidden" name="domainid" value="{$domainid}"/>
 	<input type="hidden" name="domain" value="{$domain}"/>
 	<input type="hidden" name="productkey" value="{$contactproductkey}">
+	<input type="hidden" name="contactId" value="{$contactId}">
 	<p align="center"><input class="btn" type="submit" value="{$LANG.clientareabacklink}"/></p>
 </form>
