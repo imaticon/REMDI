@@ -54,7 +54,7 @@
 								<td>&nbsp;
 									<select name="contactId" id="contactId">
 									{foreach from=$contacts key=value item=id}
-										<option value="{$id.contactid}">
+										<option value="{$id.contactid}" {if $smarty.request.contactId eq $id.contactid} selected="selected" style="background-color:#DFF0D8;"{/if}>
 										{foreach from=$id key=key item=item}
 											{$item}
 										{/foreach}
@@ -141,11 +141,8 @@
 								<td>&nbsp;
 									<select name="registrantContactId" id="registrantContactId">
 										{foreach from=$contacts key=value item=id}
-											{if $smarty.post.regcontactid eq $id.contactid || $smarty.post.registrantContactId eq $id.contactid}
-												<option value="{if $smarty.post.regcontactid}{$smarty.post.regcontactid}{else}{$smarty.post.registrantContactId}{/if}" selected="selected">
-											{else}
-												<option value="{$id.contactid}">
-											{/if}
+											<option value="{$id.contactid}" {if $smarty.request.regcontactid eq $id.contactid || $smarty.request.registrantContactId eq $id.contactid || $regcContactid eq $id.contactid} selected="selected" style="background-color:#DFF0D8;" {/if}>
+
 											{foreach from=$id key=key item=item}
 												{$item}
 											{/foreach}
@@ -159,11 +156,7 @@
 								<td>&nbsp;
 									<select name="adminContactId" id="adminContactId">
 										{foreach from=$contacts key=value item=id}
-											{if $smarty.post.admincontactid eq $id.contactid || $smarty.post.adminContactId eq $id.contactid}
-												<option value="{if $smarty.post.admincontactid}{$smarty.post.admincontactid}{else}{$smarty.post.adminContactId}{/if}" selected="selected">
-											{else}
-												<option value="{$id.contactid}">
-											{/if}
+											<option value="{$id.contactid}" {if $smarty.request.admincontactid eq $id.contactid || $smarty.request.adminContactId eq $id.contactid || $admincContactid eq $id.contactid} selected="selected" style="background-color:#DFF0D8;" {/if}>
 											{foreach from=$id key=key item=item}
 												{$item}
 											{/foreach}
@@ -177,11 +170,7 @@
 								<td>&nbsp;
 									<select name="techContactId" id="techContactId">
 										{foreach from=$contacts key=value item=id}
-											{if $smarty.post.techcontactid eq $id.contactid || $smarty.post.techContactId eq $id.contactid}
-												<option value="{if $smarty.post.techcontactid}{$smarty.post.techcontactid}{else}{$smarty.post.techContactId}{/if}" selected="selected">
-											{else}
-												<option value="{$id.contactid}">
-											{/if}
+											<option value="{$id.contactid}" {if $smarty.request.techcontactid eq $id.contactid || $smarty.request.techContactId eq $id.contactid || $techcContactid eq $id.contactid} selected="selected" style="background-color:#DFF0D8;" {/if}>
 											{foreach from=$id key=key item=item}
 												{$item}
 											{/foreach}
@@ -195,11 +184,7 @@
 								<td>&nbsp;
 									<select name="billingContactId" id="billingContactId">
 										{foreach from=$contacts key=value item=id}
-											{if $smarty.post.billcontactid eq $id.contactid || $smarty.post.billingContactId eq $id.contactid}
-												<option value="{if $smarty.post.billcontactid}{$smarty.post.billcontactid}{else}{$smarty.post.billingContactId}{/if}" selected="selected">
-											{else}
-												<option value="{$id.contactid}">
-											{/if}
+											<option value="{$id.contactid}" {if $smarty.request.billcontactid eq $id.contactid || $smarty.request.billingContactId eq $id.contactid || $billcContactid eq $id.contactid} selected="selected" style="background-color:#DFF0D8;" {/if}>
 											{foreach from=$id key=key item=item}
 												{$item}
 											{/foreach}
@@ -209,12 +194,31 @@
 								</td>
 							</tr>
 							<tr>
+								<td colspan="2">
+									<p>
+										<input name="da" type="radio" value="true" checked /> {$LANG.rcdom_datitle1}
+										<br />
+										<small>
+											{$LANG.rcdom_dadesc1}
+										</small>
+									</p>
+									<p>
+										<input name="da" type="radio" value="false" {if $da_value eq "false"}checked{/if} /> {$LANG.rcdom_datitle2}
+										<br />
+										<small>
+											{$LANG.rcdom_dadesc2}
+										</small>
+									</p>
+								</td>
+							</tr>					
+							<tr>
 								<td colspan="2" align="center">
 									<input type="hidden" name="request" value="dochange"/>
 									<input type="hidden" name="domain" value="{$domain}"/>
 									<input type="hidden" name="domainid" value="{$domainid}"/>
 									<input type="hidden" name="productkey" value="{$contactproductkey}"/>
 									<input type="hidden" name="irtprule" value="{$irtprule}"/>
+									<input type="hidden" name="contactId" value="{$smarty.request.contactId}"/>
 									<p align="center"><input class="btn btn-success" type="submit" value="{$LANG.clientareasavechanges}"/></p>
 								</td>
 							</tr>
@@ -288,7 +292,7 @@
 								<td>&nbsp;
 									<select name="contactId" id="contactId">
 									{foreach from=$contacts key=value item=id}
-										<option value="{$id.contactid}">
+										<option value="{$id.contactid}" {if $smarty.request.contactId eq $id.contactid} selected="selected" style="background-color:#DFF0D8;"{/if}>
 										{foreach from=$id key=key item=item}
 											{$item}
 										{/foreach}
@@ -531,6 +535,7 @@
 									<input type="hidden" name="contacttype" value="{$contacttype}"/>
 									<input type="hidden" name="domainid" value="{$domainid}"/>
 									<input type="hidden" name="domain" value="{$domain}"/>
+									<input type="hidden" name="contactId" value="{$smarty.request.contactId}"/>
 									<p align="center"><input class="btn btn-success" type="submit" value="{$LANG.rcdom_contactinfocreatebutton}" ></p>
 								</td>
 							</tr>
