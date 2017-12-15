@@ -11,6 +11,16 @@
 	<br />
 {/if}
 
+{if $irtpsuccess}
+	<br />
+	<div class="alert alert-success">
+		<p>{$LANG.moduleactionsuccess}</p>
+		<ul>
+			<p>{$LANG.rcdom_irtpsuccess} {$LANG.rcdom_toword} <strong>{$current_regc_email}</strong> {$LANG.rcdom_andword} <strong>{$new_regc_email}</strong></p>
+		</ul>
+	</div><br />
+{/if}
+
 {if $raaverifystatus eq "Pending"}
 	<div class="alert alert-warn">
 		<p class="bold">{$LANG.rcdom_raapendingtitle}</p>
@@ -22,6 +32,35 @@
 				<input type="hidden" name="irtprule" value="{$irtprule}"/>
 				<input type="hidden" name="raa" value="resend"/>
 				<p><input class="btn btn-info" type="submit" value="{$LANG.rcdom_raasendbutton}"/></p>
+			</form>
+		</ul>
+	</div>
+{/if}
+
+{if $irtp_status eq "PENDING"}
+	<div class="alert alert-warn">
+		<p><strong>{$LANG.rcdom_irtppendingtitle}</strong></p><br />
+		<ul>
+			<table class="table">
+				<tr>
+					<th>{$LANG.rcdom_irtpregistranttitle}</th>
+					<th>{$LANG.rcdom_irtpstatustitle}</th>
+				</tr>
+				<tr>
+					<td>{$LANG.rcdom_currentregistranttitle} ({$current_regc_email})</td>
+					<td>{$current_regc_status}</td>
+				</tr>
+				<tr>
+					<td>{$LANG.rcdom_newregistranttitle} ({$new_regc_email})</td>
+					<td>{$new_regc_status}</td>
+				</tr>
+			</table>
+			<form method="post" action="domainmanagement.php?action=domaincontacts">
+				<input type="hidden" name="domain" value="{$domain}"/>
+				<input type="hidden" name="domainid" value="{$domainid}"/>
+				<input type="hidden" name="irtprule" value="{$irtprule}"/>
+				<input type="hidden" name="irtp" value="resend"/>
+				<p><input class="btn btn-info" type="submit" value="{$LANG.rcdom_irtpsendbutton}"/></p>
 			</form>
 		</ul>
 	</div>
@@ -55,17 +94,22 @@
                 <div class="styled_title">
 					<h2>{$LANG.rcdom_regc}</h2>
 					<p>{$LANG.rcdom_contactdesc}</p>
-					<div style="float:right;margin-right:3px;">
+					<div style="float:right;padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=changedomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
 							<input type="hidden" name="productkey" value="{$contactproductkey}"/>
 							<input type="hidden" name="irtprule" value="{$irtprule}"/>
+							<input type="hidden" name="registrantContactId" value="{$regcContactid}"/>
+							<input type="hidden" name="adminContactId" value="{$admincContactid}"/>
+							<input type="hidden" name="techContactId" value="{$techcContactid}"/>
+							<input type="hidden" name="billingContactId" value="{$billcContactid}"/>
+							<input type="hidden" name="contactId" value="{$regcContactid}"/>
 							<input class="btn btn-info" type="submit" value="{$LANG.rcdom_domaincontactmanagementbutton}"/>
 						</form>
 					</div>
 					{if $canmod neq "false"}
-					<div style="float:right;margin-right:3px;">
+					<div style="float:right;padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=moddomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
@@ -164,17 +208,22 @@
                 <div class="styled_title">
 					<h2>{$LANG.rcdom_adminc}</h2>
 					<p>{$LANG.rcdom_contactdesc}</p>
-					<div style="float:right;margin-right:3px;">
+					<div style="float:right;padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=changedomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
 							<input type="hidden" name="productkey" value="{$contactproductkey}"/>
 							<input type="hidden" name="irtprule" value="{$irtprule}"/>
+							<input type="hidden" name="registrantContactId" value="{$regcContactid}"/>
+							<input type="hidden" name="adminContactId" value="{$admincContactid}"/>
+							<input type="hidden" name="techContactId" value="{$techcContactid}"/>
+							<input type="hidden" name="billingContactId" value="{$billcContactid}"/>
+							<input type="hidden" name="contactId" value="{$admincContactid}"/>
 							<input class="btn btn-info" type="submit" value="{$LANG.rcdom_domaincontactmanagementbutton}"/>
 						</form>
 					</div>
 					{if $canmod neq "false"}
-					<div style="float:right;margin-right:3px;">
+					<div style="float:right;padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=moddomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
@@ -273,17 +322,22 @@
                 <div class="styled_title">
 					<h2>{$LANG.rcdom_techc}</h2>
 					<p>{$LANG.rcdom_contactdesc}</p>
-					<div style="float:right;margin-right:3px;">
+					<div style="float:right;padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=changedomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
 							<input type="hidden" name="productkey" value="{$contactproductkey}"/>
 							<input type="hidden" name="irtprule" value="{$irtprule}"/>
+							<input type="hidden" name="registrantContactId" value="{$regcContactid}"/>
+							<input type="hidden" name="adminContactId" value="{$admincContactid}"/>
+							<input type="hidden" name="techContactId" value="{$techcContactid}"/>
+							<input type="hidden" name="billingContactId" value="{$billcContactid}"/>
+							<input type="hidden" name="contactId" value="{$techcContactid}"/>
 							<input class="btn btn-info" type="submit" value="{$LANG.rcdom_domaincontactmanagementbutton}"/>
 						</form>
 					</div>
 					{if $canmod neq "false"}
-					<div style="float:right;margin-right:3px;">
+					<div style="float:right;padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=moddomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
@@ -382,17 +436,22 @@
                 <div class="styled_title">
 					<h2>{$LANG.rcdom_billc}</h2>
 					<p>{$LANG.rcdom_contactdesc}</p>
-					<div style="float:right;margin-right:3px;">
+					<div style="float:right;padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=changedomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
 							<input type="hidden" name="productkey" value="{$contactproductkey}"/>
 							<input type="hidden" name="irtprule" value="{$irtprule}"/>
+							<input type="hidden" name="registrantContactId" value="{$regcContactid}"/>
+							<input type="hidden" name="adminContactId" value="{$admincContactid}"/>
+							<input type="hidden" name="techContactId" value="{$techcContactid}"/>
+							<input type="hidden" name="billingContactId" value="{$billcContactid}"/>
+							<input type="hidden" name="contactId" value="{$billcContactid}"/>
 							<input class="btn btn-info" type="submit" value="{$LANG.rcdom_domaincontactmanagementbutton}"/>
 						</form>
 					</div>
 					{if $canmod neq "false"}
-					<div style="float:right;margin-right:3px;">
+					<div style="float:right;padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=moddomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
