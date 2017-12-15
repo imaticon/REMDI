@@ -17,17 +17,56 @@ jQuery(document).ready(function(){
 	</div><br />
 {/if}
 
+{if $irtpsuccess}
+	<br />
+	<div class="alert alert-success">
+		<p>{$LANG.moduleactionsuccess}</p>
+		<ul>
+			<p>{$LANG.rcdom_irtpsuccess} {$LANG.rcdom_toword} <strong>{$current_regc_email}</strong> {$LANG.rcdom_andword} <strong>{$new_regc_email}</strong></p>
+		</ul>
+	</div><br />
+{/if}
+
 {if $raaverifystatus eq "Pending"}
 	<div class="alert alert-warning">
 		<p>{$LANG.rcdom_raapendingtitle}</p>
 		<ul>
-			<p>{$LANG.rcdom_raaverifybefore1} <strong>{$regcEmailaddr}</strong> {$LANG.rcdom_raaverifybefore2} <strong>{$verifyenddate}</strong>{$LANG.rcdom_raaverifybefore3}</p>
+			<p>{$LANG.rcdom_raaverifybefore1} <strong>{$regcEmailaddr}</strong>. {$LANG.rcdom_raaverifybefore2} <strong>{$verifyenddate}</strong>{$LANG.rcdom_raaverifybefore3}</p>
 			<form method="post" action="domainmanagement.php?action=domaincontacts">
 				<input type="hidden" name="domain" value="{$domain}"/>
 				<input type="hidden" name="domainid" value="{$domainid}"/>
 				<input type="hidden" name="irtprule" value="{$irtprule}"/>
 				<input type="hidden" name="raa" value="resend"/>
 				<p><input class="btn btn-success" type="submit" value="{$LANG.rcdom_raasendbutton}"/></p>
+			</form>
+		</ul>
+	</div>
+{/if}
+
+{if $irtp_status eq "PENDING"}
+	<div class="alert alert-warning">
+		<p><strong>{$LANG.rcdom_irtppendingtitle}</strong></p><br />
+		<ul>
+			<table class="table">
+				<tr>
+					<th>{$LANG.rcdom_irtpregistranttitle}</th>
+					<th>{$LANG.rcdom_irtpstatustitle}</th>
+				</tr>
+				<tr>
+					<td>{$LANG.rcdom_currentregistranttitle} ({$current_regc_email})</td>
+					<td>{$current_regc_status}</td>
+				</tr>
+				<tr>
+					<td>{$LANG.rcdom_newregistranttitle} ({$new_regc_email})</td>
+					<td>{$new_regc_status}</td>
+				</tr>
+			</table>
+			<form method="post" action="domainmanagement.php?action=domaincontacts">
+				<input type="hidden" name="domain" value="{$domain}"/>
+				<input type="hidden" name="domainid" value="{$domainid}"/>
+				<input type="hidden" name="irtprule" value="{$irtprule}"/>
+				<input type="hidden" name="irtp" value="resend"/>
+				<p><input class="btn btn-success" type="submit" value="{$LANG.rcdom_irtpsendbutton}"/></p>
 			</form>
 		</ul>
 	</div>
@@ -42,18 +81,23 @@ jQuery(document).ready(function(){
 					<div class="pull-left">
 						<h3>{$LANG.rcdom_regcdetails}</h3>
 					</div>
-					<div class="pull-right" style="margin-right:3px;">
+					<div class="pull-right" style="padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=changedomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
 							<input type="hidden" name="productkey" value="{$contactproductkey}"/>
 							<input type="hidden" name="irtprule" value="{$irtprule}"/>
 							<input type="hidden" name="tab" value="modifycontact"/>
+							<input type="hidden" name="registrantContactId" value="{$regcContactid}"/>
+							<input type="hidden" name="adminContactId" value="{$admincContactid}"/>
+							<input type="hidden" name="techContactId" value="{$techcContactid}"/>
+							<input type="hidden" name="billingContactId" value="{$billcContactid}"/>
+							<input type="hidden" name="contactId" value="{$regcContactid}"/>
 							<input class="btn btn-primary" type="submit" value="{$LANG.rcdom_domaincontactmanagementbutton}"/>
 						</form>
 					</div>
 					{if $canmod neq "false"}
-					<div class="pull-right" style="margin-right:3px;">
+					<div class="pull-right" style="padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=moddomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
@@ -137,18 +181,23 @@ jQuery(document).ready(function(){
 					<div class="pull-left">
 						<h3>{$LANG.rcdom_admincdetails}</h3>
 					</div>
-					<div class="pull-right" style="margin-right:3px;">
+					<div class="pull-right" style="padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=changedomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
 							<input type="hidden" name="irtprule" value="{$irtprule}"/>
 							<input type="hidden" name="tab" value="modifycontact"/>
 							<input type="hidden" name="productkey" value="{$contactproductkey}"/>
+							<input type="hidden" name="registrantContactId" value="{$regcContactid}"/>
+							<input type="hidden" name="adminContactId" value="{$admincContactid}"/>
+							<input type="hidden" name="techContactId" value="{$techcContactid}"/>
+							<input type="hidden" name="billingContactId" value="{$billcContactid}"/>
+							<input type="hidden" name="contactId" value="{$admincContactid}"/>
 							<p align="center"><input class="btn btn-primary" type="submit" value="{$LANG.rcdom_domaincontactmanagementbutton}"/></p>
 						</form>
 					</div>
 					{if $canmod neq "false"}
-					<div class="pull-right" style="margin-right:3px;">
+					<div class="pull-right" style="padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=moddomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
@@ -232,18 +281,23 @@ jQuery(document).ready(function(){
 					<div class="pull-left">
 						<h3>{$LANG.rcdom_techcdetails}</h3>
 					</div>
-					<div class="pull-right" style="margin-right:3px;">
+					<div class="pull-right" style="padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=changedomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
 							<input type="hidden" name="irtprule" value="{$irtprule}"/>
 							<input type="hidden" name="tab" value="modifycontact"/>
 							<input type="hidden" name="productkey" value="{$contactproductkey}"/>
+							<input type="hidden" name="registrantContactId" value="{$regcContactid}"/>
+							<input type="hidden" name="adminContactId" value="{$admincContactid}"/>
+							<input type="hidden" name="techContactId" value="{$techcContactid}"/>
+							<input type="hidden" name="billingContactId" value="{$billcContactid}"/>
+							<input type="hidden" name="contactId" value="{$techcContactid}"/>
 							<p align="center"><input class="btn btn-primary" type="submit" value="{$LANG.rcdom_domaincontactmanagementbutton}"/></p>
 						</form>
 					</div>
 					{if $canmod neq "false"}
-					<div class="pull-right" style="margin-right:3px;">
+					<div class="pull-right" style="padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=moddomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
@@ -327,18 +381,23 @@ jQuery(document).ready(function(){
 					<div class="pull-left">
 						<h3>{$LANG.rcdom_billcdetails}</h3>
 					</div>
-					<div class="pull-right" style="margin-right:3px;">
+					<div class="pull-right" style="padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=changedomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
 							<input type="hidden" name="irtprule" value="{$irtprule}"/>
 							<input type="hidden" name="tab" value="modifycontact"/>
 							<input type="hidden" name="productkey" value="{$contactproductkey}"/>
+							<input type="hidden" name="registrantContactId" value="{$regcContactid}"/>
+							<input type="hidden" name="adminContactId" value="{$admincContactid}"/>
+							<input type="hidden" name="techContactId" value="{$techcContactid}"/>
+							<input type="hidden" name="billingContactId" value="{$billcContactid}"/>
+							<input type="hidden" name="contactId" value="{$billcContactid}"/>
 							<p align="center"><input class="btn btn-primary" type="submit" value="{$LANG.rcdom_domaincontactmanagementbutton}"/></p>
 						</form>
 					</div>
 					{if $canmod neq "false"}
-					<div class="pull-right" style="margin-right:3px;">
+					<div class="pull-right" style="padding:0px 3px 2px 0px;">
 						<form method="post" action="domainmanagement.php?action=moddomaincontacts">
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
