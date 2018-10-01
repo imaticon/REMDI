@@ -6,6 +6,7 @@ Resellerclub Extended Management Domain Interface for WHMCS
 * domainmanagementcontactchange.tpl
 * domainmanagementcontactmod.tpl
 * domainmanagementcontacts.tpl
+* domainmanagementdnssec.tpl
 
 ## Compatibility
 This theme is compatible with WHMCS 6.x - 7.x
